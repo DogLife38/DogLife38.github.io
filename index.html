@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DogLife ID</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #000;
+            color: white;
+            font-family: -apple-system, BlinkMacSystemFont,
+                         "SF Pro Display", "Helvetica Neue", sans-serif;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 20px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 64px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 34px;
+            margin: 0 0 10px;
+        }
+
+        .subtitle {
+            color: #999;
+            font-size: 17px;
+            margin-bottom: 35px;
+        }
+
+        .info {
+            background: #1c1c1e;
+            border-radius: 24px;
+            padding: 25px 20px;
+        }
+
+        .label {
+            color: #999;
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+
+        .id {
+            font-size: 30px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+        }
+
+        .status {
+            color: #30d158;
+            font-size: 17px;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            display: block;
+            margin-top: 25px;
+            padding: 16px;
+
+            background: #007aff;
+            color: white;
+
+            text-decoration: none;
+            border-radius: 16px;
+
+            font-size: 18px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <div class="logo">🐶</div>
+
+    <h1>DogLife</h1>
+
+    <div class="subtitle">
+        Информация о питомце
+    </div>
+
+    <div class="info">
+
+        <div class="label">
+            DogLife ID
+        </div>
+
+        <div class="id" id="dogID">
+            Загрузка...
+        </div>
+
+        <div class="status">
+            ✓ Профиль зарегистрирован
+        </div>
+
+        <div class="label">
+            Этот QR-код связан с профилем питомца в DogLife.
+        </div>
+
+        <a
+            id="openApp"
+            class="button"
+            href="#"
+        >
+            Открыть DogLife
+        </a>
+
+    </div>
+
+</div>
+
+<script>
+
+    const params = new URLSearchParams(
+        window.location.search
+    );
+
+    const dogID =
+        params.get("id") || "UNKNOWN";
+
+    document.getElementById("dogID").textContent =
+        dogID;
+
+    document.getElementById("openApp").href =
+        "doglife://pet/" + encodeURIComponent(dogID);
+
+</script>
+
+</body>
+</html>
